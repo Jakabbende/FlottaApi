@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using FlottaApi.Models;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlottaApi.Controllers
 {
@@ -74,7 +76,7 @@ namespace FlottaApi.Controllers
                 Sofor so = _context.Sofors.FirstOrDefault(s => s.Id == sofor.Id);
                 if(so == null)
                 {
-                    return NotFound("Hianyzó sofor");
+                    return NotFound("Hianyzó Sofor");
                 }
                 _context.ChangeTracker.Clear();
                 _context.Sofors.Update(so);
@@ -108,18 +110,24 @@ namespace FlottaApi.Controllers
             }
         }
 
-        //[HttpGet("GetGepjarmu")]
-        //public IActionResult GetAllgepjarmu()
-        //{
-        //    try
-        //    {
-        //        List<Gepjarmu> gepj = _context.Gepjarmus.ToList();
-        //        return Ok(gepj);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, ex.Message);
-        //    }
-        //}
+
+        [HttpGet("SoforJarmu/{id}")]
+        public IActionResult GetSoforJarmu(int id)
+        {
+            try
+            {
+                Sofor vane = _context.Sofors.FirstOrDefault(s => s.Id == id);
+                if(vane == null)
+                {
+                    return NotFound("Hianyzo sofor");
+                }
+                var res = _context.Kikuldottjarmus.Where(j => j.SoforNavigation.Id == id).Select(j => j.Gepjarmu).ToList();
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Hiba" + ex.Message);
+            }
+        }
     }
 }
