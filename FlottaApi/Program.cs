@@ -1,3 +1,6 @@
+using FlottaApi.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace FlottaApi
 {
@@ -9,6 +12,10 @@ namespace FlottaApi
 
             // Add services to the container.
 
+            builder.Services.AddDbContext<FlottaContext>(options => {
+                string connstr = builder.Configuration.GetConnectionString("FlottaConnection");
+                options.UseMySql(connstr, ServerVersion.AutoDetect(connstr));
+            });
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
