@@ -21,13 +21,13 @@ namespace FlottaItentity
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {
-    new Client
-    {
-        ClientId = "teszt_kliens",
-        AllowedGrantTypes = GrantTypes.ClientCredentials, // Nincs felhasználói belépés, csak kulcsok
-        ClientSecrets = { new Duende.IdentityServer.Models.Secret("szupertitkos_jelszo".Sha256()) },
-        AllowedScopes = { "FlottaApi" } // Milyen API-hoz kérhet hozzáférést
-    },
+    //new Client
+    //{
+    //    ClientId = "teszt_kliens",
+    //    AllowedGrantTypes = GrantTypes.ClientCredentials, // Nincs felhasználói belépés, csak kulcsok
+    //    ClientSecrets = { new Duende.IdentityServer.Models.Secret("szupertitkos_jelszo".Sha256()) },
+    //    AllowedScopes = { "FlottaApi" } // Milyen API-hoz kérhet hozzáférést
+    //},
     new Client
     {
         ClientId = "wpf_kliens",
