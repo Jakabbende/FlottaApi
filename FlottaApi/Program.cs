@@ -21,7 +21,16 @@ namespace FlottaApi
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
 
-            var app = builder.Build();
+            builder.Services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "http://localhost:5000"; // Az IdentityServer címe
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters.ValidateAudience = false; // Kezdésnek kikapcsolva
+            });
+
+
+var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -32,6 +41,7 @@ namespace FlottaApi
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

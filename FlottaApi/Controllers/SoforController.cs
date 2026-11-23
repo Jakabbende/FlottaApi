@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FlottaApi.Models;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FlottaApi.Controllers
 {
@@ -17,6 +18,7 @@ namespace FlottaApi.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet("GetAllSoforok")]
         public IActionResult GetAllsoforok()
         {

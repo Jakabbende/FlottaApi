@@ -21,26 +21,26 @@ namespace FlottaItentity
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {
-    //new Client
-    //{
-    //    ClientId = "teszt_kliens",
-    //    AllowedGrantTypes = GrantTypes.ClientCredentials, // Nincs felhasználói belépés, csak kulcsok
-    //    ClientSecrets = { new Duende.IdentityServer.Models.Secret("szupertitkos_jelszo".Sha256()) },
-    //    AllowedScopes = { "FlottaApi" } // Milyen API-hoz kérhet hozzáférést
-    //},
-    new Client
-    {
-        ClientId = "wpf_kliens",
-        // Engedélyezzük a felhasználónév + jelszó alapú belépést:
-        AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-        ClientSecrets = { new Duende.IdentityServer.Models.Secret("wpf_titkos_kulcs".Sha256()) },
+                //new Client
+                //{
+                //    ClientId = "teszt_kliens",
+                //    AllowedGrantTypes = GrantTypes.ClientCredentials, // Nincs felhasználói belépés, csak kulcsok
+                //    ClientSecrets = { new Duende.IdentityServer.Models.Secret("szupertitkos_jelszo".Sha256()) },
+                //    AllowedScopes = { "FlottaApi" } // Milyen API-hoz kérhet hozzáférést
+                //},
+                new Client
+                {
+                    ClientId = "wpf_kliens",
+                    // Engedélyezzük a felhasználónév + jelszó alapú belépést:
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets = { new Duende.IdentityServer.Models.Secret("wpf_titkos_kulcs".Sha256()) },
         
-        // Milyen jogosultságokat kérhet a kliens:
-        AllowedScopes = { "openid", "profile", "FlottaApi" },
+                    // Milyen jogosultságokat kérhet a kliens:
+                    AllowedScopes = { "openid", "profile", "FlottaApi" },
         
-        // Opcionális: Refresh token engedélyezése, hogy ne kelljen újra beírni a jelszót lejáratkor
-        AllowOfflineAccess = true
-    }
+                    // Opcionális: Refresh token engedélyezése, hogy ne kelljen újra beírni a jelszót lejáratkor
+                    AllowOfflineAccess = true
+                }
             };
 
 
