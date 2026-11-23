@@ -13,7 +13,7 @@ namespace FlottaApi
             // Add services to the container.
 
             builder.Services.AddDbContext<FlottaContext>(options => {
-                string connstr = builder.Configuration.GetConnectionString("server=localhost;port=3306;database=pets;user=root;ssl mode=none");
+                string connstr = builder.Configuration.GetConnectionString("FlottaConnection");
                 options.UseMySql(connstr, ServerVersion.AutoDetect(connstr));
             });
             builder.Services.AddControllers();
